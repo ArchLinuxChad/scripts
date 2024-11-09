@@ -5,6 +5,8 @@ dotsrepo="/home/$USER/github-repos/dotfiles"
 
 # backup files
 cp /home/$USER/.bashrc $dotsrepo
+cp /home/$USER/.bash_profile $dotsrepo
+cp /home/$USER/.xinitrc $dotsrepo
 
 # back up .config
 cp -r $configrepo/dunst $dotsrepo/.config/
