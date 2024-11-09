@@ -1,40 +1,29 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-function main {
-    choices=("mount" "unmount")
-    choice=$(printf "%s\n" "${choices[@]}" | dmenu -p "Action: ")
-    [[ -z $choice ]] && exit 1
-    case $choice in
-        "mount")
-            shmount
-            ;;
-        "unmount")
-        shunmount
-        ;;
-    esac
+shmount() {
+  drives=$(lsblk -lp | grep "disk $" | grep -v "nvme0n1" | awk '{print $1}')
+  DRIVE=$(printf "%s\n" "${drives[@]}" | dmenu -p "Drive to mount")
+  DIRS=$(find /mnt -maxdepth 3 2>/dev/null)
+  MOUNTPOINT=$(printf "%s\n" "${DIRS[@]}" | dmenu -p "Mountpoint")
+  # decrypt drive
+  sudo cryptsetup open $DRIVE vault 
+  sudo mount /dev/mapper/vault $MOUNTPOINT
 }
 
-function shmount {
-   drives=$(lsblk -lp | grep "part $" | awk '{print $1}')
-   dmount=$(printf "%s\n" "${drives[@]}" | dmenu -p "Drive to mount: ")
-   [[ -z $dmount ]] && exit 1
-   # directorys can be added
-   dirs=$(find /mnt -maxdepth 3 2>/dev/null)
-
-   mountpoint=$(printf "%s\n" "${dirs[@]}" | dmenu -p "Mounpoint: ")
-
-   sudo mount $dmount $mountpoint
+shunmount() {
+  MOUNTS=$(lsblk -lp | grep "crypt" | awk '{print $NF}')
+  UDRIVE=$(printf "%s\n" "${MOUNTS[@]}" | dmenu -p "Drive to unmount")
+  sudo mount $UDRIVE
+  sudo cryptsetup close vault
 }
 
-function shunmount {
-   # I only mount drives to /mnt so only look there
-   drives=$(lsblk -lp | grep "t /" | awk '{print $NF}' | grep "mnt")
-   udrive=$(printf "%s\n" "${drives[@]}" | dmenu -p "Drives to unmount: ")
-   [[ -z $udrive ]] && exit 1
-   sudo umount $udrive
-}
 
-# run the script
-main
+# choice for user to make
+CHOICES=("mount" "unmount")
+# let user make choice
+CHOICE=$(printf "%s\n" "${CHOICES[@]}" | dmenu -p "Select an option")
 
-}
+# decide what to do after choice was made
+[[ -z "$CHOICE" ]] && exit 0
+[[ "$CHOICE" == "mount" ]] && shmount
+[[ "$CHOICE" == "unmount" ]] && shunmount
