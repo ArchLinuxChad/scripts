@@ -14,6 +14,11 @@ bar() {
 	# show volume percentage
 	VOL=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | sed 's/\.//')
 	echo "$VOL%"
+  echo "|"
+  
+  # show disk usage
+  DISK=$(df -h | grep nvme0n1p3 | grep -v /home | awk '{print $5}')
+  echo "Disk: $DISK"
 }
 
 # set the bar

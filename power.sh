@@ -2,7 +2,7 @@
 
 options=("Suspend" "Reboot" "Shutdown")
 
-selection=$(printf "%s\n" "${options[@]}" | dmenu)
+selection=$(printf "%s\n" "${options[@]}" | wofi -d)
 
 if [[ "$selection" == "Suspend" ]]; then
 	systemctl suspend

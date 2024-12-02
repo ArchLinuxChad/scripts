@@ -1,6 +1,9 @@
 #!/bin/bash
+HOMEDIR="/home/$USER"
+CONFDIR="/home/$USER/.config"
+SCRDIR="/home/$USER/github-repos/scripts"
 
-dotfiles=("/home/$USER/.config/kitty/kitty.conf" "/home/$USER/dwm/config.h" "/home/$USER/st/config.h" "/home/$USER/slstatus/config.h" "/home/$USER/surf/config.h" "/home/$USER/.config/starship.toml" "/home/$USER/.config/rofi/config.rasi" "/home/$USER/.config/fastfetch/config.jsonc" "/home/$USER/.config/picom/picom.conf")
+dotfiles=("$CONFDIR/kitty/kitty.conf" "$HOMEDIR/dwm/config.h" "$HOMEDIR/st/config.h" "$HOMEDIR/slstatus/config.h" "$HOMEDIR/surf/config.h" "$CONFDIR/starship.toml" "$CONFDIR/rofi/config.rasi" "$CONFDIR/fastfetch/config.jsonc" "$CONFDIR/picom/picom.conf" "$SCRDIR/dots.sh" "$SCRDIR/bar.sh" "$SCRDIR/updatebar.sh" "$HOMEDIR/.bashrc" "$HOMEDIR/.xinitrc" "$HOMEDIR/.bash_profile")
 
 dot=$(printf "%s\n" "${dotfiles[@]}" | fzf)
 
