@@ -13,4 +13,8 @@ cp -r $configrepo/dunst $dotsrepo/.config/
 cp -r $configrepo/fastfetch $dotsrepo/.config/
 cp -r $configrepo/kitty $dotsrepo/.config/
 cp -r $configrepo/picom $dotsrepo/.config/
+cp -r $configrepo/fish $dotsrepo/.config/
+cp -r $configrepo/hypr $dotsrepo/.config/
+cp -r $configrepo/waybar $dotsrepo/.config/
+cp -r $configrepo/wofi $dotsrepo/.config/
 cp $configrepo/starship.toml $dotsrepo/.config/

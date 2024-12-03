@@ -1,3 +1,3 @@
 #!/bin/bash
 
-swaylock -c "#dc143c"
+swaylock -c "#000000"
