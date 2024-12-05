@@ -18,3 +18,9 @@ cp -r $configrepo/hypr $dotsrepo/.config/
 cp -r $configrepo/waybar $dotsrepo/.config/
 cp -r $configrepo/wofi $dotsrepo/.config/
 cp $configrepo/starship.toml $dotsrepo/.config/
+
+cd $dotsrepo
+
+git add .
+git commit -m "updated"
+git push -u origin main

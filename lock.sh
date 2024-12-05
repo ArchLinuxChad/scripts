@@ -1,3 +1,3 @@
 #!/bin/bash
 
-swaylock -c "#000000"
+swaylock -i ~/wallpapers/darkseid.jpg
