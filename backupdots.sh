@@ -17,6 +17,7 @@ cp -r $configrepo/fish $dotsrepo/.config/
 cp -r $configrepo/hypr $dotsrepo/.config/
 cp -r $configrepo/waybar $dotsrepo/.config/
 cp -r $configrepo/wofi $dotsrepo/.config/
+cp -r $configrepo/alacritty $dotsrepo/.config/
 cp $configrepo/starship.toml $dotsrepo/.config/
 
 cd $dotsrepo
