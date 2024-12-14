@@ -1,11 +1,11 @@
 #!/bin/bash
 
-sudo cp bar.sh /usr/local/bin/bar
-sudo cp updatebar.sh /usr/local/bin/updatebar
-sudo cp incvol.sh /usr/local/bin/incvol
-sudo cp decvol.sh /usr/local/bin/decvol
-sudo cp dots.sh /usr/local/bin/dots
-sudo cp power.sh /usr/local/bin/power
-sudo cp ddb.sh /usr/local/bin/ddb
-sudo cp backupdots.sh /usr/local/bin/backupdots
-sudo cp lock.sh /usr/local/bin/lock
+cp bar.sh /home/$USER/.local/bin/bar
+cp updatebar.sh /home/$USER/.local/bin/updatebar
+cp incvol.sh /home/$USER/.local/bin/incvol
+cp decvol.sh /home/$USER/.local/bin/decvol
+cp dots.sh /home/$USER/.local/bin/dots
+cp power.sh /home/$USER/.local/bin/power
+cp ddb.sh /home/$USER/.local/bin/ddb
+cp backupdots.sh /home/$USER/.local/bin/backupdots
+cp lock.sh /home/$USER/.local/bin/lock
