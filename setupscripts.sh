@@ -9,3 +9,5 @@ cp power.sh /home/$USER/.local/bin/power
 cp ddb.sh /home/$USER/.local/bin/ddb
 cp backupdots.sh /home/$USER/.local/bin/backupdots
 cp lock.sh /home/$USER/.local/bin/lock
+cp mount.sh /home/$USER/.local/bin/mt
+cp wiki.sh /home/$USER/.local/bin/wiki

@@ -1,29 +1,32 @@
-#!/bin/bash
+#!/usr/bin/env bash
+# a script to mount my luks drive
 
-shmount() {
-  drives=$(lsblk -lp | grep "disk $" | grep -v "nvme0n1" | awk '{print $1}')
-  DRIVE=$(printf "%s\n" "${drives[@]}" | dmenu -p "Drive to mount")
-  DIRS=$(find /mnt -maxdepth 3 2>/dev/null)
-  MOUNTPOINT=$(printf "%s\n" "${DIRS[@]}" | dmenu -p "Mountpoint")
-  # decrypt drive
-  sudo cryptsetup open $DRIVE vault 
-  sudo mount /dev/mapper/vault $MOUNTPOINT
+enmount() {
+    drives=$(lsblk -l | grep disk | grep -v nvme0n1 | awk '{print $1}')
+    drive=$(printf "%s\n" "${drives[@]}" | rofi -dmenu -prompt="Drive:")
+    [[ -z $drive ]] && exit 1
+    sudo cryptsetup open /dev/$drive vault
+    posmounts=$(find /mnt -maxdepth 3 2>/dev/null)
+    mountpoint=$(printf "%s\n" "${posmounts[@]}" | rofi -dmenu -prompt="mount:")
+    [[ -z $mountpoint ]] && exit 1
+    sudo mount /dev/mapper/vault $mountpoint
 }
 
-shunmount() {
-  MOUNTS=$(lsblk -lp | grep "crypt" | awk '{print $NF}')
-  UDRIVE=$(printf "%s\n" "${MOUNTS[@]}" | dmenu -p "Drive to unmount")
-  sudo mount $UDRIVE
-  sudo cryptsetup close vault
+enunmount() {
+    mountpoints=$(find /mnt -maxdepth 3 2>/dev/null)
+    MOUNTPOINT=$(printf "%s\n" "${mountpoints[@]}" | rofi -dmenu -prompt="Mountpoint:")
+    [[ -z $MOUNTPOINT ]] && exit 1
+    sudo umount $MOUNTPOINT
+    sudo cryptsetup close vault
 }
 
-
-# choice for user to make
-CHOICES=("mount" "unmount")
-# let user make choice
-CHOICE=$(printf "%s\n" "${CHOICES[@]}" | dmenu -p "Select an option")
-
-# decide what to do after choice was made
-[[ -z "$CHOICE" ]] && exit 0
-[[ "$CHOICE" == "mount" ]] && shmount
-[[ "$CHOICE" == "unmount" ]] && shunmount
+OPTIONS=("Mount" "Unmount")
+OPTION=$(printf "%s\n" "${OPTIONS[@]}" | rofi -dmenu -prompt="Options:")
+case $OPTION in
+    "Mount")
+	enmount
+	;;
+    "Unmount")
+	enunmount
+	;;
+esac
