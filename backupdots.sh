@@ -27,3 +27,5 @@ cd $dotsrepo
 git add .
 git commit -m "updated"
 git push -u origin main
+
+notify-send "Script has finished"

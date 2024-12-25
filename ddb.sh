@@ -11,3 +11,5 @@ sudo mv ~/$DATE"_nextcloud".tar.gz $drive
 # back up gpg and passwords
 sudo cp -r /home/$USER/.gnupg $drive
 sudo cp -r /home/$USER/.password-store $drive
+
+notify-send "Backup has finished"
