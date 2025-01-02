@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 configrepo="/home/$USER/.config"
-dotsrepo="/home/$USER/github-repos/dotfiles"
+dotsrepo="/home/$USER/nc/linux/dotfiles"
 
 # backup files
 cp /home/$USER/.bashrc $dotsrepo
@@ -22,10 +22,5 @@ cp -r $configrepo/alacritty $dotsrepo/.config/
 cp -r $configrepo/herbstluftwm $dotsrepo/.config/
 cp -r $configrepo/polybar $dotsrepo/.config/
 cp $configrepo/starship.toml $dotsrepo/.config/
-cd $dotsrepo
-
-git add .
-git commit -m "updated"
-git push -u origin main
 
 notify-send "Script has finished"

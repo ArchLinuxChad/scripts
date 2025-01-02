@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if [[ ! -d /home/$USER/.local/bin ]]; then
+	mkdir /home/$USER/.local/bin
+fi
+
 cp bar.sh /home/$USER/.local/bin/bar
 cp updatebar.sh /home/$USER/.local/bin/updatebar
 cp incvol.sh /home/$USER/.local/bin/incvol
