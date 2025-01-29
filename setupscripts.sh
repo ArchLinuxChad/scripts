@@ -15,3 +15,4 @@ cp backupdots.sh /home/$USER/.local/bin/backupdots
 cp lock.sh /home/$USER/.local/bin/lock
 cp mount.sh /home/$USER/.local/bin/mt
 cp wiki.sh /home/$USER/.local/bin/wiki
+cp battery.sh /home/$USER/.local/bin/battery
